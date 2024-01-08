@@ -1,5 +1,51 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# GitHub API Stats Component
+
+This repository contains a React component designed to display GitHub API statistics for a given GitHub user. It uses the GitHub API to fetch user information and renders it on a web page. This component is built using Next.js and relies on several dependencies, including axios for making API requests and react-github-calendar for displaying GitHub contribution calendars.
+
+## Usage
+
+To use this component in your Next.js project, follow these steps:
+
+1. Install the necessary dependencies in your project:
+
+   ```bash
+   npm install axios react react-github-calendar
+   ```
+
+```bash
+import GitHubPage from "@/path/to/GitHubPage";
+
+// Use the GitHubPage component within your Next.js app
+const YourComponent = () => {
+  // ...
+
+  return (
+    <div>
+      {/* Other content */}
+      <GitHubPage userName="your-github-username" />
+    </div>
+  );
+};
+```
+
+Replace `bash "your-github-username"` with the GitHub username for which you want to display statistics.
+
+Customize the component as needed. You can modify the appearance, add more fields, or adjust the styling to suit your application's design.
+
+### Component Features
+
+- Display user avatar, name, login, bio, public repositories, and followers (if available).
+- Fetch user data from the GitHub API using Axios.
+- Render a GitHub contribution calendar using react-github-calendar by Jonathan Gruber.
+
+### Example Output
+
+The GitHubPage component will render user information, including the avatar, name, login, bio, public repositories, and followers (if available). Additionally, it will display a GitHub contribution calendar for the specified GitHub user.
+
+![example output for the github component](/app/public/Screenshot%202024-01-08%20at%2012.36.00 AM.png)
+
 ## Getting Started
 
 First, run the development server:
@@ -28,9 +74,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
