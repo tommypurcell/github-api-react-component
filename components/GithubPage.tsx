@@ -1,10 +1,15 @@
 "use client";
+require('dotenv').config();
 
 import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import GitHubCalendar from "react-github-calendar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+
+
+
 
 const GitHubPage = ({ userName }) => {
   const [user, setUser] = useState({
@@ -16,23 +21,30 @@ const GitHubPage = ({ userName }) => {
     followers: null,
   });
 
-  async function getUser(userNm) {
-    const username = userNm;
 
+// Get your access token from the environment variable
+const accessToken = process.env.GITHUB_API_ACCESS_TOKEN;
+
+
+
+  
+  async function getUserData(username) {
     try {
-      const response = await axios.get(
-        `https://api.github.com/users/${username}`
-      );
-      const user = response.data;
-      console.log(user); // Add this line to check the user data
-      setUser(user);
+      const response = await axios.get(`https://api.github.com/users/${username}`, {
+        headers: {
+          Accept: 'application/vnd.github.v3+json', // Use the v3 version of the API
+          Authorization: `Bearer ${accessToken}`, // Include your access token in the Authorization header
+        },
+      });
+      setUser(response.data)
+      console.log(response.data); // This will log the user data to the console
     } catch (error) {
-      console.error("Error fetching GitHub data", error);
+      console.error('Error fetching GitHub data', error);
     }
   }
 
   useEffect(() => {
-    getUser(userName);
+    getUserData(userName);
   }, []);
 
   return (
