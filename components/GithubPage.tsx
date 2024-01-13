@@ -23,10 +23,7 @@ const GitHubPage = ({ userName }) => {
 
 
 // Get your access token from the environment variable
-const accessToken = process.env.GITHUB_API_ACCESS_TOKEN;
-
-
-
+const accessToken = process.env.NEXT_PUBLIC_GITHUB_API_ACCESS_TOKEN;
   
   async function getUserData(username) {
     try {
