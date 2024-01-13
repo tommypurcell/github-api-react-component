@@ -12,6 +12,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 
 const GitHubPage = ({ userName }) => {
+
+
   const [user, setUser] = useState({
     avatar_url: null,
     login: null,
@@ -26,23 +28,36 @@ const GitHubPage = ({ userName }) => {
 const accessToken = process.env.NEXT_PUBLIC_GITHUB_API_ACCESS_TOKEN;
   
   async function getUserData(username) {
-    try {
-      const response = await axios.get(`https://api.github.com/users/${username}`, {
-        headers: {
-          Accept: 'application/vnd.github.v3+json', // Use the v3 version of the API
-          Authorization: `Bearer ${accessToken}`, // Include your access token in the Authorization header
-        },
-      });
-      setUser(response.data)
-      console.log(response.data); // This will log the user data to the console
-    } catch (error) {
-      console.error('Error fetching GitHub data', error);
+    console.log('running getUSerData')
+    if(username) {
+      console.log('username is true')
+      try {
+        const response = await axios.get(`https://api.github.com/users/${username}`, {
+          headers: {
+            Accept: 'application/vnd.github.v3+json', // Use the v3 version of the API
+            Authorization: `Bearer ${accessToken}`, // Include your access token in the Authorization header
+          },
+        });
+        setUser(response.data)
+        console.log(user)
+      } catch (error) {
+        console.error('Error fetching GitHub data', error);
+      }
     }
   }
 
   useEffect(() => {
     getUserData(userName);
+    console.log(userName)
   }, []);
+
+  useEffect(() => {
+    console.log(userName)
+    console.log(user.avatar_url)
+    console.log(user.public_repos)
+    getUserData(userName)
+  }, [userName])
+  
 
   return (
     <div className="flex items-center justify-center">
