@@ -44,7 +44,7 @@ Customize the component as needed. You can modify the appearance, add more field
 
 The GitHubPage component will render user information, including the avatar, name, login, bio, public repositories, and followers (if available). Additionally, it will display a GitHub contribution calendar for the specified GitHub user.
 
-![example output for the github component](/app/public/Screenshot%202024-01-08%20at%2012.36.00 AM.png)
+![example output for the github component](/app/public/screenshot-profile.png)
 
 ## Getting Started
 
